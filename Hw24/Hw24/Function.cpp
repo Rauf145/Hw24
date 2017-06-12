@@ -176,49 +176,19 @@ void Sort(char **string, int &length)
 
 int cmp(char *str1, char *str2)
 {
-	int count = 0;
-	for (int i = 0; i < 255; i++)
+	int count = 0, num1, num2;
+	for (int i = 0; i < strlen(str1); i++)
 	{
-		if (int(str1[i]) > int(str2[i]) && (int(str1[i]) > 64 && int(str1[i]) < 91) && (int(str2[i]) > 64 && int(str2[i]) < 91))
-		{
+		num1 = int(str1[i]);
+		num2 = int(str2[i]);
+		if (num1 < 91)
+			num1 += 32;
+		if (num2 < 91)
+			num2 += 32;
+		if (num1 > num2)
 			count = 1;
-			break;
-		}
-		else if (int(str1[i]) > int(str2[i]) && (int(str1[i]) > 96 && int(str1[i]) < 123) && (int(str2[i]) > 96 && int(str2[i]) < 123))
-		{
-			count = 1;
-			break;
-		}
-		else if (int(str1[i]) < int(str2[i]) && (int(str1[i]) > 64 && int(str1[i]) < 91) && (int(str2[i]) > 64 && int(str2[i]) < 91))
-		{
-			count = 0;
-			break;
-		}
-		else if (int(str1[i]) < int(str2[i]) && (int(str1[i]) > 96 && int(str1[i]) < 123) && (int(str2[i]) > 96 && int(str2[i]) < 123))
-		{
-			count = 0;
-			break;
-		}
-		else if (int(str1[i]) + 32 < int(str2[i]) && (int(str1[i]) > 64 && int(str1[i]) < 91) && (int(str2[i]) > 96 && int(str2[i]) < 123))
-		{
-			count = 0;
-			break;
-		}
-		else if (int(str1[i]) + 32 > int(str2[i]) && (int(str1[i]) > 64 && int(str1[i]) < 91) && (int(str2[i]) > 96 && int(str2[i]) < 123))
-		{
-			count = 1;
-			break;
-		}
-		else if (int(str1[i]) < int(str2[i]) + 32 && (int(str1[i]) > 96 && int(str1[i]) < 123) && (int(str2[i]) > 64 && int(str2[i]) < 91))
-		{
-			count = 0;
-			break;
-		}
-		else if (int(str1[i]) > int(str2[i]) + 32 && (int(str1[i]) > 96 && int(str1[i]) < 123) && (int(str2[i]) > 64 && int(str2[i]) < 91))
-		{
-			count = 1;
-			break;
-		}
+		else if (num2 > num1)
+			count = 0; 
 	}
 	return count;
 }
